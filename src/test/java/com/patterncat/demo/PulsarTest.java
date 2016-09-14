@@ -32,6 +32,8 @@ public class PulsarTest {
         for(int i=0;i<10;i++){
             Message msg = consumer.receive();
             System.out.println("Received message: " + new String(msg.getData()));
+            // Acknowledge the message so that it can be deleted by broker
+            consumer.acknowledge(msg);
         }
 
         client.close();
